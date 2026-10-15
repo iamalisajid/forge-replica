@@ -1,0 +1,18 @@
+run 20261015-173704-5767: http://127.0.0.1:4001/ (budget $10.00, spent $1.51)
+  intake    ok          13s  
+  explore   ok         119s  
+  extract   ok           0s  
+  specify   ok          92s  
+  validate  ok           5s  
+  build     ok         281s  
+  verify    ok          55s  
+  deliver   ok           0s  
+  cost explore   $1.16 over 2 call(s)
+  cost specify   $0.35 over 3 call(s)
+verification: partial at 7ca680953844 in ~/forge-apps/issue-tracker-20261015-173704-5767
+  verified issues_crud
+  verified heldout-close-issue (held-out)
+  verified heldout-create-project (held-out)
+  verified heldout-delete-project (held-out)
+  verified heldout-edit-priority (held-out)
+  failed   heldout-empty-title-rejected (held-out)

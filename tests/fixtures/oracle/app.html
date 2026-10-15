@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fixture items</title>
+</head>
+<body>
+<main>
+  <h1 id="heading">Items</h1>
+  <div id="tools">
+    <button id="new" type="button">New item</button>
+    <button type="button" id="ping">Ping elsewhere</button>
+    <button type="button" id="confirm">Confirm me</button>
+    <button type="button">Twin</button>
+    <button type="button">Twin</button>
+    <label>Kind <select id="kind" name="kind"><option value="a">Alpha</option><option value="b">Beta</option></select></label>
+    <label><input type="checkbox" id="agree"> Agree</label>
+    <p id="agreed" role="status"></p>
+  </div>
+  <ul aria-label="Items" id="list"></ul>
+  <p id="empty">No items yet.</p>
+</main>
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <h2 id="dlg-title">New item</h2>
+  <form id="form">
+    <label>Name <input name="name" autocomplete="off"></label>
+    <p role="alert" id="err"></p>
+    <button type="submit">Create</button>
+    <button type="button" id="cancel">Cancel</button>
+  </form>
+</dialog>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const other = location.origin.includes("127.0.0.1")
+    ? location.origin.replace("127.0.0.1", "localhost") : location.origin.replace("localhost", "127.0.0.1");
+
+  async function loadList() {
+    const res = await fetch("/api/items");
+    const { items } = await res.json();
+    $("list").replaceChildren(...items.map((item) => {
+      const li = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = "/items/" + item.id;
+      link.textContent = item.name;
+      const del = document.createElement("button");
+      del.type = "button";
+      del.textContent = "Delete";
+      del.onclick = async () => { await fetch("/api/items/" + item.id, { method: "DELETE" }); loadList(); };
+      li.append(link, " ", del);
+      return li;
+    }));
+    $("empty").hidden = items.length > 0;
+  }
+
+  async function loadItem(id) {
+    const res = await fetch("/api/items/" + id);
+    if (!res.ok) { $("heading").textContent = "Not found"; return; }
+    const item = await res.json();
+    $("heading").textContent = item.name;
+    $("tools").hidden = true;
+  }
+
+  $("new").onclick = () => { $("err").textContent = ""; $("dlg").showModal(); };
+  $("cancel").onclick = () => $("dlg").close();
+  $("ping").onclick = () => { fetch(other + "/api/ping").catch(() => {}); };
+  $("agree").onchange = () => { $("agreed").textContent = $("agree").checked ? "Agreed" : ""; };
+  $("confirm").onclick = () => { $("agreed").textContent = confirm("Sure?") ? "Confirmed" : "Declined"; };
+  $("form").onsubmit = async (event) => {
+    event.preventDefault();
+    const name = new FormData($("form")).get("name");
+    const res = await fetch("/api/items", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name }),
+    });
+    if (!res.ok) { $("err").textContent = (await res.json()).error; return; }
+    $("dlg").close();
+    $("form").reset();
+    loadList();
+  };
+
+  const match = location.pathname.match(/^\/items\/(\d+)$/);
+  if (match) loadItem(match[1]); else loadList();
+</script>
+</body>
+</html>

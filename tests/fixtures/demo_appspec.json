@@ -1,0 +1,1510 @@
+{
+  "app_name": "Issue Tracker",
+  "auth": "none",
+  "entities": [
+    {
+      "name": "project",
+      "label": "Project",
+      "plural_label": "Projects",
+      "id_type": "integer",
+      "owned_by_user": false,
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "name": "issue",
+      "label": "Issue",
+      "plural_label": "Issues",
+      "id_type": "integer",
+      "owned_by_user": false,
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "entity": "project",
+      "name": "id",
+      "type": "integer",
+      "enum_values": [],
+      "references": null,
+      "required": true,
+      "unique": false,
+      "default": null,
+      "generated": "id",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "entity": "project",
+      "name": "name",
+      "type": "string",
+      "enum_values": [],
+      "references": null,
+      "required": true,
+      "unique": false,
+      "default": null,
+      "generated": "none",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "entity": "project",
+      "name": "created_at",
+      "type": "datetime",
+      "enum_values": [],
+      "references": null,
+      "required": true,
+      "unique": false,
+      "default": null,
+      "generated": "created_at",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "entity": "issue",
+      "name": "id",
+      "type": "integer",
+      "enum_values": [],
+      "references": null,
+      "required": true,
+      "unique": false,
+      "default": null,
+      "generated": "id",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "entity": "issue",
+      "name": "project_id",
+      "type": "reference",
+      "enum_values": [],
+      "references": "project",
+      "required": true,
+      "unique": false,
+      "default": null,
+      "generated": "none",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "entity": "issue",
+      "name": "title",
+      "type": "string",
+      "enum_values": [],
+      "references": null,
+      "required": true,
+      "unique": false,
+      "default": null,
+      "generated": "none",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "entity": "issue",
+      "name": "status",
+      "type": "enum",
+      "enum_values": [
+        "open",
+        "in_progress",
+        "closed"
+      ],
+      "references": null,
+      "required": true,
+      "unique": false,
+      "default": "open",
+      "generated": "none",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "entity": "issue",
+      "name": "priority",
+      "type": "enum",
+      "enum_values": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "references": null,
+      "required": true,
+      "unique": false,
+      "default": "medium",
+      "generated": "none",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "entity": "issue",
+      "name": "created_at",
+      "type": "datetime",
+      "enum_values": [],
+      "references": null,
+      "required": true,
+      "unique": false,
+      "default": null,
+      "generated": "created_at",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "entity": "issue",
+      "name": "updated_at",
+      "type": "datetime",
+      "enum_values": [],
+      "references": null,
+      "required": true,
+      "unique": false,
+      "default": null,
+      "generated": "updated_at",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "listProjects",
+      "entity": "project",
+      "kind": "list",
+      "method": "GET",
+      "path": "/api/projects",
+      "path_params": [],
+      "request_fields": [],
+      "response": "list_envelope",
+      "list_key": "items",
+      "success_status": 200,
+      "action_sets": [],
+      "action_note": null,
+      "source_method": "GET",
+      "source_path": "/api/projects",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "createProject",
+      "entity": "project",
+      "kind": "create",
+      "method": "POST",
+      "path": "/api/projects",
+      "path_params": [],
+      "request_fields": [
+        "name"
+      ],
+      "response": "object",
+      "list_key": null,
+      "success_status": 201,
+      "action_sets": [],
+      "action_note": null,
+      "source_method": "POST",
+      "source_path": "/api/projects",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "getProject",
+      "entity": "project",
+      "kind": "get",
+      "method": "GET",
+      "path": "/api/projects/{project_id}",
+      "path_params": [
+        {
+          "name": "project_id",
+          "entity": "project"
+        }
+      ],
+      "request_fields": [],
+      "response": "object",
+      "list_key": null,
+      "success_status": 200,
+      "action_sets": [],
+      "action_note": null,
+      "source_method": "GET",
+      "source_path": "/api/projects/{project_id}",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "updateProject",
+      "entity": "project",
+      "kind": "update",
+      "method": "PATCH",
+      "path": "/api/projects/{project_id}",
+      "path_params": [
+        {
+          "name": "project_id",
+          "entity": "project"
+        }
+      ],
+      "request_fields": [
+        "name"
+      ],
+      "response": "object",
+      "list_key": null,
+      "success_status": 200,
+      "action_sets": [],
+      "action_note": null,
+      "source_method": "PATCH",
+      "source_path": "/api/projects/{project_id}",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "deleteProject",
+      "entity": "project",
+      "kind": "delete",
+      "method": "DELETE",
+      "path": "/api/projects/{project_id}",
+      "path_params": [
+        {
+          "name": "project_id",
+          "entity": "project"
+        }
+      ],
+      "request_fields": [],
+      "response": "empty",
+      "list_key": null,
+      "success_status": 204,
+      "action_sets": [],
+      "action_note": null,
+      "source_method": "DELETE",
+      "source_path": "/api/projects/{project_id}",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "listIssues",
+      "entity": "issue",
+      "kind": "list",
+      "method": "GET",
+      "path": "/api/projects/{project_id}/issues",
+      "path_params": [
+        {
+          "name": "project_id",
+          "entity": "project"
+        }
+      ],
+      "request_fields": [],
+      "response": "list_envelope",
+      "list_key": "items",
+      "success_status": 200,
+      "action_sets": [],
+      "action_note": null,
+      "source_method": "GET",
+      "source_path": "/api/projects/{project_id}/issues",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "createIssue",
+      "entity": "issue",
+      "kind": "create",
+      "method": "POST",
+      "path": "/api/projects/{project_id}/issues",
+      "path_params": [
+        {
+          "name": "project_id",
+          "entity": "project"
+        }
+      ],
+      "request_fields": [
+        "title",
+        "status",
+        "priority"
+      ],
+      "response": "object",
+      "list_key": null,
+      "success_status": 201,
+      "action_sets": [],
+      "action_note": null,
+      "source_method": "POST",
+      "source_path": "/api/projects/{project_id}/issues",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "getIssue",
+      "entity": "issue",
+      "kind": "get",
+      "method": "GET",
+      "path": "/api/issues/{issue_id}",
+      "path_params": [
+        {
+          "name": "issue_id",
+          "entity": "issue"
+        }
+      ],
+      "request_fields": [],
+      "response": "object",
+      "list_key": null,
+      "success_status": 200,
+      "action_sets": [],
+      "action_note": null,
+      "source_method": "GET",
+      "source_path": "/api/issues/{issue_id}",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "updateIssue",
+      "entity": "issue",
+      "kind": "update",
+      "method": "PATCH",
+      "path": "/api/issues/{issue_id}",
+      "path_params": [
+        {
+          "name": "issue_id",
+          "entity": "issue"
+        }
+      ],
+      "request_fields": [
+        "title",
+        "status",
+        "priority"
+      ],
+      "response": "object",
+      "list_key": null,
+      "success_status": 200,
+      "action_sets": [],
+      "action_note": null,
+      "source_method": "PATCH",
+      "source_path": "/api/issues/{issue_id}",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "deleteIssue",
+      "entity": "issue",
+      "kind": "delete",
+      "method": "DELETE",
+      "path": "/api/issues/{issue_id}",
+      "path_params": [
+        {
+          "name": "issue_id",
+          "entity": "issue"
+        }
+      ],
+      "request_fields": [],
+      "response": "empty",
+      "list_key": null,
+      "success_status": 204,
+      "action_sets": [],
+      "action_note": null,
+      "source_method": "DELETE",
+      "source_path": "/api/issues/{issue_id}",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "closeIssue",
+      "entity": "issue",
+      "kind": "action",
+      "method": "POST",
+      "path": "/api/issues/{issue_id}/close",
+      "path_params": [
+        {
+          "name": "issue_id",
+          "entity": "issue"
+        }
+      ],
+      "request_fields": [],
+      "response": "object",
+      "list_key": null,
+      "success_status": 200,
+      "action_sets": [
+        {
+          "name": "status",
+          "value": "closed"
+        }
+      ],
+      "action_note": null,
+      "source_method": "POST",
+      "source_path": "/api/issues/{issue_id}/close",
+      "basis": "observed",
+      "evidence": [
+        "fixture"
+      ]
+    }
+  ],
+  "screens": [
+    {
+      "id": "projects",
+      "route": "/",
+      "title": "Projects",
+      "entity": "project",
+      "kind": "list",
+      "parent": null,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "project",
+      "route": "/projects/:project_id",
+      "title": "Project",
+      "entity": "project",
+      "kind": "detail",
+      "parent": "projects",
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issue",
+      "route": "/issues/:issue_id",
+      "title": "Issue",
+      "entity": "issue",
+      "kind": "detail",
+      "parent": "project",
+      "evidence": [
+        "fixture"
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "id": "projects-heading",
+      "screen": "projects",
+      "parent": null,
+      "role": "heading",
+      "name": "Projects",
+      "purpose": "heading",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 1,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-project",
+      "screen": "projects",
+      "parent": null,
+      "role": "button",
+      "name": "New project",
+      "purpose": "open_create",
+      "operation": "createProject",
+      "field": null,
+      "target_screen": null,
+      "order": 2,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-project-dialog",
+      "screen": "projects",
+      "parent": "new-project",
+      "role": "dialog",
+      "name": "New project",
+      "purpose": "container",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 3,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-project-name",
+      "screen": "projects",
+      "parent": "new-project-dialog",
+      "role": "textbox",
+      "name": "Name",
+      "purpose": "field",
+      "operation": null,
+      "field": "name",
+      "target_screen": null,
+      "order": 4,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-project-error",
+      "screen": "projects",
+      "parent": "new-project-dialog",
+      "role": "alert",
+      "name": "",
+      "purpose": "status_message",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 5,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-project-submit",
+      "screen": "projects",
+      "parent": "new-project-dialog",
+      "role": "button",
+      "name": "Create project",
+      "purpose": "submit_create",
+      "operation": "createProject",
+      "field": null,
+      "target_screen": null,
+      "order": 6,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-project-cancel",
+      "screen": "projects",
+      "parent": "new-project-dialog",
+      "role": "button",
+      "name": "Cancel",
+      "purpose": "cancel",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 7,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "projects-list",
+      "screen": "projects",
+      "parent": null,
+      "role": "list",
+      "name": "Projects",
+      "purpose": "list",
+      "operation": "listProjects",
+      "field": null,
+      "target_screen": null,
+      "order": 8,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "projects-row",
+      "screen": "projects",
+      "parent": "projects-list",
+      "role": "listitem",
+      "name": "",
+      "purpose": "list_row",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 9,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "projects-row-link",
+      "screen": "projects",
+      "parent": "projects-row",
+      "role": "link",
+      "name": "",
+      "purpose": "navigate",
+      "operation": null,
+      "field": "name",
+      "target_screen": "project",
+      "order": 10,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "projects-row-delete",
+      "screen": "projects",
+      "parent": "projects-row",
+      "role": "button",
+      "name": "Delete",
+      "purpose": "delete",
+      "operation": "deleteProject",
+      "field": null,
+      "target_screen": null,
+      "order": 11,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "projects-empty",
+      "screen": "projects",
+      "parent": null,
+      "role": "paragraph",
+      "name": "No projects yet.",
+      "purpose": "text",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 12,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "project-back",
+      "screen": "project",
+      "parent": null,
+      "role": "link",
+      "name": "All projects",
+      "purpose": "navigate",
+      "operation": null,
+      "field": null,
+      "target_screen": "projects",
+      "order": 1,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "project-heading",
+      "screen": "project",
+      "parent": null,
+      "role": "heading",
+      "name": "",
+      "purpose": "heading",
+      "operation": null,
+      "field": "name",
+      "target_screen": null,
+      "order": 2,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-issue",
+      "screen": "project",
+      "parent": null,
+      "role": "button",
+      "name": "New issue",
+      "purpose": "open_create",
+      "operation": "createIssue",
+      "field": null,
+      "target_screen": null,
+      "order": 3,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-issue-dialog",
+      "screen": "project",
+      "parent": "new-issue",
+      "role": "dialog",
+      "name": "New issue",
+      "purpose": "container",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 4,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-issue-title",
+      "screen": "project",
+      "parent": "new-issue-dialog",
+      "role": "textbox",
+      "name": "Title",
+      "purpose": "field",
+      "operation": null,
+      "field": "title",
+      "target_screen": null,
+      "order": 5,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-issue-status",
+      "screen": "project",
+      "parent": "new-issue-dialog",
+      "role": "combobox",
+      "name": "Status",
+      "purpose": "field",
+      "operation": null,
+      "field": "status",
+      "target_screen": null,
+      "order": 6,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-issue-priority",
+      "screen": "project",
+      "parent": "new-issue-dialog",
+      "role": "combobox",
+      "name": "Priority",
+      "purpose": "field",
+      "operation": null,
+      "field": "priority",
+      "target_screen": null,
+      "order": 7,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-issue-error",
+      "screen": "project",
+      "parent": "new-issue-dialog",
+      "role": "alert",
+      "name": "",
+      "purpose": "status_message",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 8,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-issue-submit",
+      "screen": "project",
+      "parent": "new-issue-dialog",
+      "role": "button",
+      "name": "Create issue",
+      "purpose": "submit_create",
+      "operation": "createIssue",
+      "field": null,
+      "target_screen": null,
+      "order": 9,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "new-issue-cancel",
+      "screen": "project",
+      "parent": "new-issue-dialog",
+      "role": "button",
+      "name": "Cancel",
+      "purpose": "cancel",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 10,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issues-table",
+      "screen": "project",
+      "parent": null,
+      "role": "table",
+      "name": "Issues",
+      "purpose": "list",
+      "operation": "listIssues",
+      "field": null,
+      "target_screen": null,
+      "order": 11,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issues-row",
+      "screen": "project",
+      "parent": "issues-table",
+      "role": "row",
+      "name": "",
+      "purpose": "list_row",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 12,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issues-row-link",
+      "screen": "project",
+      "parent": "issues-row",
+      "role": "link",
+      "name": "",
+      "purpose": "navigate",
+      "operation": null,
+      "field": "title",
+      "target_screen": "issue",
+      "order": 13,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issues-row-status",
+      "screen": "project",
+      "parent": "issues-row",
+      "role": "cell",
+      "name": "",
+      "purpose": "text",
+      "operation": null,
+      "field": "status",
+      "target_screen": null,
+      "order": 14,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issues-row-priority",
+      "screen": "project",
+      "parent": "issues-row",
+      "role": "cell",
+      "name": "",
+      "purpose": "text",
+      "operation": null,
+      "field": "priority",
+      "target_screen": null,
+      "order": 15,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issues-row-close",
+      "screen": "project",
+      "parent": "issues-row",
+      "role": "button",
+      "name": "Close",
+      "purpose": "action",
+      "operation": "closeIssue",
+      "field": null,
+      "target_screen": null,
+      "order": 16,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issues-row-delete",
+      "screen": "project",
+      "parent": "issues-row",
+      "role": "button",
+      "name": "Delete",
+      "purpose": "delete",
+      "operation": "deleteIssue",
+      "field": null,
+      "target_screen": null,
+      "order": 17,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issues-empty",
+      "screen": "project",
+      "parent": null,
+      "role": "paragraph",
+      "name": "No issues yet.",
+      "purpose": "text",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 18,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issue-back",
+      "screen": "issue",
+      "parent": null,
+      "role": "link",
+      "name": "Back to project",
+      "purpose": "navigate",
+      "operation": null,
+      "field": null,
+      "target_screen": "project",
+      "order": 1,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "issue-heading",
+      "screen": "issue",
+      "parent": null,
+      "role": "heading",
+      "name": "",
+      "purpose": "heading",
+      "operation": null,
+      "field": "title",
+      "target_screen": null,
+      "order": 2,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "edit-issue-form",
+      "screen": "issue",
+      "parent": null,
+      "role": "form",
+      "name": "Edit issue",
+      "purpose": "container",
+      "operation": "updateIssue",
+      "field": null,
+      "target_screen": null,
+      "order": 3,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "edit-issue-title",
+      "screen": "issue",
+      "parent": "edit-issue-form",
+      "role": "textbox",
+      "name": "Title",
+      "purpose": "field",
+      "operation": null,
+      "field": "title",
+      "target_screen": null,
+      "order": 4,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "edit-issue-status",
+      "screen": "issue",
+      "parent": "edit-issue-form",
+      "role": "combobox",
+      "name": "Status",
+      "purpose": "field",
+      "operation": null,
+      "field": "status",
+      "target_screen": null,
+      "order": 5,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "edit-issue-priority",
+      "screen": "issue",
+      "parent": "edit-issue-form",
+      "role": "combobox",
+      "name": "Priority",
+      "purpose": "field",
+      "operation": null,
+      "field": "priority",
+      "target_screen": null,
+      "order": 6,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "edit-issue-error",
+      "screen": "issue",
+      "parent": "edit-issue-form",
+      "role": "alert",
+      "name": "",
+      "purpose": "status_message",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 7,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "edit-issue-submit",
+      "screen": "issue",
+      "parent": "edit-issue-form",
+      "role": "button",
+      "name": "Save changes",
+      "purpose": "submit_update",
+      "operation": "updateIssue",
+      "field": null,
+      "target_screen": null,
+      "order": 8,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "edit-issue-saved",
+      "screen": "issue",
+      "parent": null,
+      "role": "status",
+      "name": "Saved",
+      "purpose": "status_message",
+      "operation": null,
+      "field": null,
+      "target_screen": null,
+      "order": 9,
+      "evidence": [
+        "fixture"
+      ]
+    },
+    {
+      "id": "delete-issue",
+      "screen": "issue",
+      "parent": null,
+      "role": "button",
+      "name": "Delete issue",
+      "purpose": "delete",
+      "operation": "deleteIssue",
+      "field": null,
+      "target_screen": "project",
+      "order": 10,
+      "evidence": [
+        "fixture"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "pilot-issue-lifecycle",
+      "feature": "issues",
+      "title": "Create, reload, edit and delete an issue",
+      "mutating": true,
+      "binds": [
+        {
+          "name": "project",
+          "kind": "uniq_text",
+          "value": null
+        },
+        {
+          "name": "title",
+          "kind": "uniq_text",
+          "value": null
+        },
+        {
+          "name": "title2",
+          "kind": "uniq_text",
+          "value": null
+        }
+      ],
+      "setup": [],
+      "steps": [
+        {
+          "kind": "goto",
+          "target": null,
+          "value": null,
+          "route": "/"
+        },
+        {
+          "kind": "click",
+          "target": {
+            "role": "button",
+            "name": "New project",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "fill",
+          "target": {
+            "role": "textbox",
+            "name": "Name",
+            "exact": true,
+            "has_text": null,
+            "within_role": "dialog",
+            "within_name": "New project",
+            "within_has_text": null
+          },
+          "value": "{{project}}",
+          "route": null
+        },
+        {
+          "kind": "click",
+          "target": {
+            "role": "button",
+            "name": "Create project",
+            "exact": true,
+            "has_text": null,
+            "within_role": "dialog",
+            "within_name": "New project",
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "expect_visible",
+          "target": {
+            "role": "link",
+            "name": "{{project}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "click",
+          "target": {
+            "role": "link",
+            "name": "{{project}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "expect_visible",
+          "target": {
+            "role": "heading",
+            "name": "{{project}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "click",
+          "target": {
+            "role": "button",
+            "name": "New issue",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "fill",
+          "target": {
+            "role": "textbox",
+            "name": "Title",
+            "exact": true,
+            "has_text": null,
+            "within_role": "dialog",
+            "within_name": "New issue",
+            "within_has_text": null
+          },
+          "value": "{{title}}",
+          "route": null
+        },
+        {
+          "kind": "select",
+          "target": {
+            "role": "combobox",
+            "name": "Priority",
+            "exact": true,
+            "has_text": null,
+            "within_role": "dialog",
+            "within_name": "New issue",
+            "within_has_text": null
+          },
+          "value": "high",
+          "route": null
+        },
+        {
+          "kind": "click",
+          "target": {
+            "role": "button",
+            "name": "Create issue",
+            "exact": true,
+            "has_text": null,
+            "within_role": "dialog",
+            "within_name": "New issue",
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "expect_visible",
+          "target": {
+            "role": "link",
+            "name": "{{title}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "reread",
+          "target": null,
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "expect_visible",
+          "target": {
+            "role": "link",
+            "name": "{{title}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "click",
+          "target": {
+            "role": "link",
+            "name": "{{title}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "fill",
+          "target": {
+            "role": "textbox",
+            "name": "Title",
+            "exact": true,
+            "has_text": null,
+            "within_role": "form",
+            "within_name": "Edit issue",
+            "within_has_text": null
+          },
+          "value": "{{title2}}",
+          "route": null
+        },
+        {
+          "kind": "click",
+          "target": {
+            "role": "button",
+            "name": "Save changes",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "expect_visible",
+          "target": {
+            "role": "heading",
+            "name": "{{title2}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "reread",
+          "target": null,
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "expect_visible",
+          "target": {
+            "role": "heading",
+            "name": "{{title2}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "expect_value",
+          "target": {
+            "role": "combobox",
+            "name": "Priority",
+            "exact": true,
+            "has_text": null,
+            "within_role": "form",
+            "within_name": "Edit issue",
+            "within_has_text": null
+          },
+          "value": "high",
+          "route": null
+        },
+        {
+          "kind": "click",
+          "target": {
+            "role": "button",
+            "name": "Delete issue",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "expect_visible",
+          "target": {
+            "role": "heading",
+            "name": "{{project}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "expect_hidden",
+          "target": {
+            "role": "link",
+            "name": "{{title2}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "reread",
+          "target": null,
+          "value": null,
+          "route": null
+        },
+        {
+          "kind": "expect_hidden",
+          "target": {
+            "role": "link",
+            "name": "{{title2}}",
+            "exact": true,
+            "has_text": null,
+            "within_role": null,
+            "within_name": null,
+            "within_has_text": null
+          },
+          "value": null,
+          "route": null
+        }
+      ],
+      "captures": [
+        {
+          "name": "project_id",
+          "operation": "createProject",
+          "field": "id"
+        },
+        {
+          "name": "issue_id",
+          "operation": "createIssue",
+          "field": "id"
+        }
+      ],
+      "effects": [
+        {
+          "operation": "listIssues",
+          "path_params": [
+            {
+              "name": "project_id",
+              "value": "{{captured.project_id}}"
+            }
+          ],
+          "field": "title",
+          "value": "{{title2}}",
+          "present": false
+        },
+        {
+          "operation": "listProjects",
+          "path_params": [],
+          "field": "name",
+          "value": "{{project}}",
+          "present": true
+        }
+      ],
+      "evidence": [
+        "fixture"
+      ]
+    }
+  ],
+  "pilot_scenario": "pilot-issue-lifecycle",
+  "assumptions": [
+    "Lists are ordered newest first."
+  ],
+  "unsupported": []
+}

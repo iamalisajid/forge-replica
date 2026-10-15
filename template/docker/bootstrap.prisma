@@ -1,0 +1,12 @@
+// Used only while building the base image, so Prisma engines are downloaded once and runs stay offline.
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x", "linux-musl-openssl-3.0.x"]
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model Bootstrap {
+  id Int @id @default(autoincrement())
+}

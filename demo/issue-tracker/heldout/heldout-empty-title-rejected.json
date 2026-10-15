@@ -1,0 +1,193 @@
+{
+  "id": "heldout-empty-title-rejected",
+  "feature": "issues",
+  "title": "An issue without a title is rejected",
+  "mutating": true,
+  "binds": [
+    {
+      "name": "project",
+      "kind": "uniq_text",
+      "value": null
+    }
+  ],
+  "setup": [],
+  "steps": [
+    {
+      "kind": "goto",
+      "target": null,
+      "value": null,
+      "route": "/"
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "New project",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "fill",
+      "target": {
+        "role": "textbox",
+        "name": "Name",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New project",
+        "within_has_text": null
+      },
+      "value": "{{project}}",
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Create project",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New project",
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "link",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "link",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "New issue",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Create issue",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New issue",
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_text",
+      "target": {
+        "role": "alert",
+        "name": null,
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New issue",
+        "within_has_text": null
+      },
+      "value": "required",
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Cancel",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New issue",
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "reread",
+      "target": null,
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "heading",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_hidden",
+      "target": {
+        "role": "table",
+        "name": "Issues",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    }
+  ],
+  "captures": [
+    {
+      "name": "project_id",
+      "operation": "createProject",
+      "field": "id"
+    }
+  ],
+  "effects": [],
+  "evidence": [
+    "fixture"
+  ]
+}

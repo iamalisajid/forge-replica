@@ -1,0 +1,231 @@
+{
+  "id": "heldout-close-issue",
+  "feature": "issues",
+  "title": "Closing an issue persists its status",
+  "mutating": true,
+  "binds": [
+    {
+      "name": "project",
+      "kind": "uniq_text",
+      "value": null
+    },
+    {
+      "name": "title",
+      "kind": "uniq_text",
+      "value": null
+    }
+  ],
+  "setup": [],
+  "steps": [
+    {
+      "kind": "goto",
+      "target": null,
+      "value": null,
+      "route": "/"
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "New project",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "fill",
+      "target": {
+        "role": "textbox",
+        "name": "Name",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New project",
+        "within_has_text": null
+      },
+      "value": "{{project}}",
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Create project",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New project",
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "link",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "link",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "heading",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "New issue",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "fill",
+      "target": {
+        "role": "textbox",
+        "name": "Title",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New issue",
+        "within_has_text": null
+      },
+      "value": "{{title}}",
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Create issue",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New issue",
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "link",
+        "name": "{{title}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Close",
+        "exact": true,
+        "has_text": null,
+        "within_role": "row",
+        "within_name": null,
+        "within_has_text": "{{title}}"
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_text",
+      "target": {
+        "role": "row",
+        "name": null,
+        "exact": true,
+        "has_text": "{{title}}",
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": "closed",
+      "route": null
+    },
+    {
+      "kind": "reread",
+      "target": null,
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_text",
+      "target": {
+        "role": "row",
+        "name": null,
+        "exact": true,
+        "has_text": "{{title}}",
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": "closed",
+      "route": null
+    }
+  ],
+  "captures": [
+    {
+      "name": "project_id",
+      "operation": "createProject",
+      "field": "id"
+    },
+    {
+      "name": "issue_id",
+      "operation": "createIssue",
+      "field": "id"
+    }
+  ],
+  "effects": [],
+  "evidence": [
+    "fixture"
+  ]
+}

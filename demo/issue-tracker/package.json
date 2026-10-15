@@ -1,0 +1,9 @@
+{
+  "name": "demo-issue-tracker",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Demo target for forge: a small issue tracker on a different stack (Express + node:sqlite + vanilla JS).",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "express": "5.3.0" }
+}

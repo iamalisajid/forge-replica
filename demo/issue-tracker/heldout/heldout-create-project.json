@@ -1,0 +1,109 @@
+{
+  "id": "heldout-create-project",
+  "feature": "projects",
+  "title": "A new project is listed after a reload",
+  "mutating": true,
+  "binds": [
+    {
+      "name": "project",
+      "kind": "uniq_text",
+      "value": null
+    }
+  ],
+  "setup": [],
+  "steps": [
+    {
+      "kind": "goto",
+      "target": null,
+      "value": null,
+      "route": "/"
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "New project",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "fill",
+      "target": {
+        "role": "textbox",
+        "name": "Name",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New project",
+        "within_has_text": null
+      },
+      "value": "{{project}}",
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Create project",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New project",
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "link",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "reread",
+      "target": null,
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "link",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    }
+  ],
+  "captures": [
+    {
+      "name": "project_id",
+      "operation": "createProject",
+      "field": "id"
+    }
+  ],
+  "effects": [],
+  "evidence": [
+    "fixture"
+  ]
+}

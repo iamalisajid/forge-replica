@@ -1,0 +1,11 @@
+# Demo target ("the original"). Reset its data with: docker compose -f demo/issue-tracker/compose.yaml down -v
+services:
+  demo:
+    build: .
+    image: forge-demo-issue-tracker:dev
+    ports: ["127.0.0.1:4001:4001"]
+    environment:
+      AUTH: "${AUTH:-off}"
+    volumes: [demo-data:/data]
+volumes:
+  demo-data: {}

@@ -1,0 +1,394 @@
+{
+  "id": "pilot-issue-lifecycle",
+  "feature": "issues",
+  "title": "Create, reload, edit and delete an issue",
+  "mutating": true,
+  "binds": [
+    {
+      "name": "project",
+      "kind": "uniq_text",
+      "value": null
+    },
+    {
+      "name": "title",
+      "kind": "uniq_text",
+      "value": null
+    },
+    {
+      "name": "title2",
+      "kind": "uniq_text",
+      "value": null
+    }
+  ],
+  "setup": [],
+  "steps": [
+    {
+      "kind": "goto",
+      "target": null,
+      "value": null,
+      "route": "/"
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "New project",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "fill",
+      "target": {
+        "role": "textbox",
+        "name": "Name",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New project",
+        "within_has_text": null
+      },
+      "value": "{{project}}",
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Create project",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New project",
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "link",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "link",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "heading",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "New issue",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "fill",
+      "target": {
+        "role": "textbox",
+        "name": "Title",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New issue",
+        "within_has_text": null
+      },
+      "value": "{{title}}",
+      "route": null
+    },
+    {
+      "kind": "select",
+      "target": {
+        "role": "combobox",
+        "name": "Priority",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New issue",
+        "within_has_text": null
+      },
+      "value": "high",
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Create issue",
+        "exact": true,
+        "has_text": null,
+        "within_role": "dialog",
+        "within_name": "New issue",
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "link",
+        "name": "{{title}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "reread",
+      "target": null,
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "link",
+        "name": "{{title}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "link",
+        "name": "{{title}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "fill",
+      "target": {
+        "role": "textbox",
+        "name": "Title",
+        "exact": true,
+        "has_text": null,
+        "within_role": "form",
+        "within_name": "Edit issue",
+        "within_has_text": null
+      },
+      "value": "{{title2}}",
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Save changes",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "heading",
+        "name": "{{title2}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "reread",
+      "target": null,
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "heading",
+        "name": "{{title2}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_value",
+      "target": {
+        "role": "combobox",
+        "name": "Priority",
+        "exact": true,
+        "has_text": null,
+        "within_role": "form",
+        "within_name": "Edit issue",
+        "within_has_text": null
+      },
+      "value": "high",
+      "route": null
+    },
+    {
+      "kind": "click",
+      "target": {
+        "role": "button",
+        "name": "Delete issue",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_visible",
+      "target": {
+        "role": "heading",
+        "name": "{{project}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_hidden",
+      "target": {
+        "role": "link",
+        "name": "{{title2}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "reread",
+      "target": null,
+      "value": null,
+      "route": null
+    },
+    {
+      "kind": "expect_hidden",
+      "target": {
+        "role": "link",
+        "name": "{{title2}}",
+        "exact": true,
+        "has_text": null,
+        "within_role": null,
+        "within_name": null,
+        "within_has_text": null
+      },
+      "value": null,
+      "route": null
+    }
+  ],
+  "captures": [
+    {
+      "name": "project_id",
+      "operation": "createProject",
+      "field": "id"
+    },
+    {
+      "name": "issue_id",
+      "operation": "createIssue",
+      "field": "id"
+    }
+  ],
+  "effects": [
+    {
+      "operation": "listIssues",
+      "path_params": [
+        {
+          "name": "project_id",
+          "value": "{{captured.project_id}}"
+        }
+      ],
+      "field": "title",
+      "value": "{{title2}}",
+      "present": false
+    },
+    {
+      "operation": "listProjects",
+      "path_params": [],
+      "field": "name",
+      "value": "{{project}}",
+      "present": true
+    }
+  ],
+  "evidence": [
+    "fixture"
+  ]
+}

@@ -1,0 +1,67 @@
+# Runs the replica: Postgres, one-shot migrations, then the app on http://127.0.0.1:${PORT:-3000}.
+# Networks: `backend` is internal (no route out); only `app` also joins `edge`, which publishes the port.
+# FORGE_BASE_IMAGE (optional) is the image the Dockerfile builds from; see the Dockerfile.
+x-build: &build
+  context: .
+  args:
+    BASE_IMAGE: ${FORGE_BASE_IMAGE:-node:22-alpine}
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d app"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    networks: [backend]
+
+  migrate:
+    build: *build
+    command: ["npx", "prisma", "migrate", "deploy", "--schema", "db/schema.prisma"]
+    environment:
+      DATABASE_URL: postgresql://app:app@db:5432/app?schema=public
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+    networks: [backend]
+
+  app:
+    build: *build
+    environment:
+      DATABASE_URL: postgresql://app:app@db:5432/app?schema=public
+      FORGE_MUTANT: ${FORGE_MUTANT:-}
+      FORGE_TEST_MODE: ${FORGE_TEST_MODE:-}
+      PORT: "3000"
+    ports:
+      - "127.0.0.1:${PORT:-3000}:3000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/__forge/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 5s
+    # Inside the network, reach the app as http://replica:3000: Chromium upgrades http://app:3000 to HTTPS (.app TLD).
+    networks:
+      backend:
+        aliases: [replica]
+      edge:
+        aliases: [replica]
+
+networks:
+  backend:
+    internal: true
+  edge: {}
+
+volumes:
+  db-data: {}

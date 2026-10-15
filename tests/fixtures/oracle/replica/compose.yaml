@@ -1,0 +1,25 @@
+# Fake replica following the forge stack contract (services db/migrate/app, app on :3000).
+services:
+  db:
+    image: node:22-alpine
+    init: true
+    command: ["node", "-e", "setInterval(() => {}, 1 << 30)"]
+    networks: [backend]
+  migrate:
+    image: node:22-alpine
+    command: ["node", "-e", "process.exit(0)"]
+    networks: [backend]
+  app:
+    build: .
+    init: true
+    environment:
+      DATA_FILE: /data/items.json
+    volumes: [appdata:/data]
+    ports: ["127.0.0.1:3000:3000"]
+    networks: [backend, edge]
+    depends_on: [db]
+networks:
+  backend: {internal: true}
+  edge: {}
+volumes:
+  appdata: {}
